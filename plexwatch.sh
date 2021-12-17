@@ -18,6 +18,7 @@ logFile=$watchFolder/Watch.Log # were should i put my log file?
 # plexVersion=${plexVersionDirty##*: }
 # plexVersionND=${plexVersion%%-*}
 # plexVersionND=${plexVersionND//.}
+# plexVersionND1=$plexVersionND
 #}
 
 #18.04
@@ -25,8 +26,8 @@ PV () {
  #getting the installed version of Plex Media Server when called
  plexVersionDirty=`/usr/bin/dpkg -l plexmediaserver | grep plex`
  plexVersion=${plexVersionDirty##*er }
- plexVersionND=${plexVersion%%-*}
- plexVersionND=${plexVersionND//.}
+ plexVersionND1=${plexVersion%%-*}
+ plexVersionND=${plexVersionND1//.}
 }
 
 
@@ -85,7 +86,7 @@ while(true)
       then
        LOG "Install of $plexWatch Failed not trying again, removing .deb assuming bad, and aborting opperation."
       else
-       LOG "Updated from $oldVersion to $plexVersion removing .deb since job is complete!"
+       LOG "Updated from $oldVersion to $plexVersionND1 removing .deb since job is complete!"
       fi
      ;;
      0)
